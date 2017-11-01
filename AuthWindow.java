@@ -104,7 +104,7 @@ public class AuthWindow extends JFrame implements ActionListener {
                 } else {
                     succ = false;
                     JOptionPane.showMessageDialog(this,
-                            slogin + "/" + spassw, "Ошибка",
+                            slogin + "/" + spassw, "Ошибка 1",
                             JOptionPane.ERROR_MESSAGE);
                 }
             }

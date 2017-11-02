@@ -9,7 +9,7 @@ import java.awt.event.FocusListener;
 import java.util.Arrays;
 import java.util.Properties;
 
-public class AuthWindow extends JFrame implements ActionListener {
+class AuthWindow extends JFrame implements ActionListener {
         JPanel pnl = new JPanel();
         GridBagLayout gbl = new GridBagLayout();
         GridBagConstraints c = new GridBagConstraints();
@@ -22,7 +22,7 @@ public class AuthWindow extends JFrame implements ActionListener {
         private Properties success = new Properties();
         String slogin = "";
         String spassw = "";
-        boolean succ;
+        public boolean succ;
         char[] checPass = {'t', 'e', 's', 't'};
         char[] entPass;
 
@@ -35,7 +35,6 @@ public class AuthWindow extends JFrame implements ActionListener {
             setSize(330, 240);
             setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
             add(pnl);
-            setVisible(true);
             setLayout(gbl);
 
             c.anchor = GridBagConstraints.NORTH;
@@ -54,7 +53,7 @@ public class AuthWindow extends JFrame implements ActionListener {
             login.addFocusListener(new FocusListener() {
                 public void focusGained(FocusEvent e) {
                     login.setSelectionStart(0);
-                    login.setSelectionEnd(10);
+                    login.setSelectionEnd(15);
                 }
                 public void focusLost(FocusEvent e) {
                     login.select(0 ,0);
@@ -65,15 +64,14 @@ public class AuthWindow extends JFrame implements ActionListener {
             gbl.setConstraints(passw, c);
             passw.setEchoChar('*');
             add(passw);
-            /*passw.addFocusListener(new FocusListener() {
+            passw.addFocusListener(new FocusListener() {
                 public void focusGained(FocusEvent e) {
-                    login.setSelectionStart(0);
-                    login.setSelectionEnd(10);
+                    passw.setSelectionStart(0);
+                    passw.setSelectionEnd(15);
                 }
                 public void focusLost(FocusEvent e) {
-                    login.select(0 ,0);
-                }
-            });*/
+                    passw.select(0 ,0);}
+            });
 
             c.insets = new Insets(3, 10, 0, 0);
             c.ipadx = 6;
@@ -91,6 +89,7 @@ public class AuthWindow extends JFrame implements ActionListener {
             gbl.setConstraints(btn1, c);
             add(btn1);
             btn1.addActionListener(this);
+            setVisible(true);
         }
 
         public void actionPerformed(ActionEvent event) {
@@ -101,11 +100,14 @@ public class AuthWindow extends JFrame implements ActionListener {
                 entPass = passw.getPassword();
                 if (slogin.equals("sol_oper") && Arrays.equals(entPass, checPass)) {
                     succ = true;
-                    //JOptionPane.showMessageDialog(this, slogin, "Верно", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(this, slogin+" Верно!", "Верно",
+                            JOptionPane.INFORMATION_MESSAGE);
+                    dispose();
+                    MainWindow mw = new MainWindow();
                 } else {
                     succ = false;
                     JOptionPane.showMessageDialog(this,
-                            slogin + "/" + spassw, "Ошибка 1",
+                            slogin + "/" + succ, "Ошибка 1",
                             JOptionPane.ERROR_MESSAGE);
                 }
             }
@@ -113,6 +115,4 @@ public class AuthWindow extends JFrame implements ActionListener {
                 System.exit(0);
             }
         }
-
-
 }

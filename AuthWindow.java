@@ -18,7 +18,7 @@ public class AuthWindow extends JFrame implements ActionListener {
         JTextField login = new JTextField("Логин", 17);
         JPasswordField passw = new JPasswordField ("Пароль", 17);
         String[] servers = {"Основной рабочий сервер","Тестовый сервер"};
-        JComboBox<String> serversbox = new JComboBox<String>(servers);
+        JComboBox serversbox = new JComboBox(servers);
         private Properties success = new Properties();
         String slogin = "";
         String spassw = "";
@@ -32,7 +32,7 @@ public class AuthWindow extends JFrame implements ActionListener {
 
         public AuthWindow() {
             super("Get-Kassa");
-            setSize(310, 210);
+            setSize(330, 240);
             setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
             add(pnl);
             setVisible(true);
@@ -101,6 +101,7 @@ public class AuthWindow extends JFrame implements ActionListener {
                 entPass = passw.getPassword();
                 if (slogin.equals("sol_oper") && Arrays.equals(entPass, checPass)) {
                     succ = true;
+                    //JOptionPane.showMessageDialog(this, slogin, "Верно", JOptionPane.INFORMATION_MESSAGE);
                 } else {
                     succ = false;
                     JOptionPane.showMessageDialog(this,

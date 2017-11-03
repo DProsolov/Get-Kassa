@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 
 class MainWindow extends JFrame {
@@ -6,7 +7,7 @@ class MainWindow extends JFrame {
 
     public static void main(String[] args) {
         AuthWindow auth = new AuthWindow();
-        //MainWindow gui = new MainWindow();
+        //MainWindow mw = new MainWindow();
     }
 
     public MainWindow() {

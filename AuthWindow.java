@@ -1,6 +1,8 @@
 import javafx.application.Application;
 
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -49,6 +51,7 @@ class AuthWindow extends JFrame implements ActionListener {
             c.weightx = 0;
             c.weighty = 0;
             gbl.setConstraints(login, c);
+            login.setBorder(new TitledBorder("Логин:"));
             add(login);
             login.addFocusListener(new FocusListener() {
                 public void focusGained(FocusEvent e) {
@@ -63,6 +66,7 @@ class AuthWindow extends JFrame implements ActionListener {
             c.insets = new Insets(2, 10, 0, 0);
             gbl.setConstraints(passw, c);
             passw.setEchoChar('*');
+            passw.setBorder(new TitledBorder("Пароль:"));
             add(passw);
             passw.addFocusListener(new FocusListener() {
                 public void focusGained(FocusEvent e) {
@@ -76,6 +80,7 @@ class AuthWindow extends JFrame implements ActionListener {
             c.insets = new Insets(3, 10, 0, 0);
             c.ipadx = 6;
             gbl.setConstraints(serversbox, c);
+            serversbox.setBorder(new BevelBorder(1,Color.BLACK,Color.BLACK));
             add(serversbox);
 
             c.insets = new Insets(4, 12, 0, 0);

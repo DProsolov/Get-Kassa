@@ -99,20 +99,28 @@ class AuthWindow extends JFrame implements ActionListener {
 
         public void actionPerformed(ActionEvent event) {
             if (event.getSource() == btn) {
-                //success.setProperty(login.getText(), passw.getPassword().toString());
                 slogin = login.getText();
-                spassw = passw.getPassword().toString();
                 entPass = passw.getPassword();
-                if (slogin.equals("sol_oper") && Arrays.equals(entPass, checPass)) {
-                    succ = true;
-                    JOptionPane.showMessageDialog(this, slogin+" Верно!", "Верно",
-                            JOptionPane.INFORMATION_MESSAGE);
+                spassw = String.valueOf(entPass);
+                Conn conn = new Conn();
+                try {
+                    conn.openConn(1);
+                    conn.parse(1);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                if (conn.authin/*slogin.equals("sol_oper") && Arrays.equals(entPass, checPass)*/) {
+                    //succ = true;
+                    spassw = String.valueOf(entPass);
+                    JOptionPane.showMessageDialog(this, slogin + "/" + spassw +
+                                    " Верно!", "Верно", JOptionPane.INFORMATION_MESSAGE);
                     dispose();
                     MainWindow mw = new MainWindow();
                 } else {
                     succ = false;
+                    spassw = String.valueOf(entPass);
                     JOptionPane.showMessageDialog(this,
-                            slogin + "/" + succ, "Ошибка 1",
+                            slogin + "/" + spassw + "/" + succ, "Ошибка 1",
                             JOptionPane.ERROR_MESSAGE);
                 }
             }
